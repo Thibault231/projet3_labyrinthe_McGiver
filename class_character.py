@@ -20,16 +20,16 @@ class Character(Element):
 			self.position = (x_position, y_position)
 
 	def __new_position(self, direction):
+		""" Identification of futur Mac Gyver's position on the map"""
+		
 		y_position, x_position = self.position
 		self.position = ( (y_position + direction) * 40, 
 			(x_position + direction) * 40)
 		return(self.position)
 	
 	def character_movment(self, direction, window_surface, y_position, x_position ):
-		"""
-		Make Mac Giver moving on the labyrinth according to the
-		directional key instructions translated by the key word "direction"
-		 """
+		"""Make Mac Giver moving on the labyrinth according to the
+		directional key instructions translated by the key word 'direction' """
 
 		#creates a fluent movment
 		i = 1

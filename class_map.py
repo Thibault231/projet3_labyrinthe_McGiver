@@ -27,11 +27,13 @@ class Map:
 
 	def __init__(self, width, heigth):
 		"""  Initiate the map attribute according to two size variables. """
+		
 		self.map = np.zeros((width, heigth))
 
 
 	def show_labyrinth(self, window_surface):
 		""" Display the labyrinth on Pygame window."""
+
 		# define font picture
 		labyrinth_font = pygame.image.load("pictures/labyrinth_font.jpg") 
 		labyrinth_font.convert_alpha()
@@ -51,6 +53,8 @@ class Map:
 		pygame.display.flip()
 
 def repare_labyrinth(window_surface, x_position, y_position):
+	""" Pastes labyrinth texture on the map after Mac Gyver's movment"""
+
 	labyrinth_path = pygame.image.load("pictures/labyrinth_path.jpg") #  
 	labyrinth_path.convert_alpha()
 	window_surface.blit(labyrinth_path, [y_position,x_position])

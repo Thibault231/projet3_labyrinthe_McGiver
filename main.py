@@ -16,7 +16,8 @@ def main():
 	list_items = items_settlement()
 	MacGuffin =list_items.pop()
 	mac_gyver, guardian = characters_settlement(MacGuffin)
-	# create and display the pygame main window surface	
+	
+	# creates and displays the pygame main window surface	
 	pygame.init()
 	window_resolution = (600, 600)
 	pygame.display.set_caption("Labyrinthe Mac Giver")
@@ -24,20 +25,19 @@ def main():
 	pygame.RESIZABLE)   # surface object
 	pygame.display.flip()
 
-	#creates starts playlist songs.
+	#creates and starts playlist songs.
 	pygame.mixer.music.load("songs/InClosing-DaysPast.mp3")
 	pygame.mixer.music.play()
 
-	# display labyrinth, items and characters on the main surface
+	# displays labyrinth, items and characters on the main surface
 	map_game.show_labyrinth(window_surface)
 	for item in list_items:
 		item.show_element(window_surface)
 	mac_gyver.show_element(window_surface)
 	guardian.show_element(window_surface)
 
-	# execute the game script for events
+	# execution of game's script for the events
 	launched = True
-	
 	while launched:
 
 		for event in pygame.event.get():
@@ -46,8 +46,11 @@ def main():
 				launched = False
 
 			elif event.type == KEYDOWN and event.key == K_DOWN:
+				#movment control
 				mac_gyver.character_movment("down", window_surface,
 				 mac_gyver.position[0],  mac_gyver.position[1] )
+				#Colapse control
+				#Item control
 			elif event.type == KEYDOWN and event.key == K_UP:
 				mac_gyver.character_movment("up", window_surface,
 				 mac_gyver.position[0],  mac_gyver.position[1] )

@@ -12,6 +12,7 @@ class Element:
 
 	def __init__(self, name, picture_path, x_position=0, y_position=0):
 			"""  Initiate common element's attributs """
+
 			self.name = name
 			self.picture_path = picture_path 
 			self.position = [x_position, y_position]
@@ -20,6 +21,7 @@ class Element:
 	def element_sizing_position(self):
 		""" Resize matrix set of coordonates in surface set of 
 		coordonates for the Pygame window """
+		
 		(x_position, y_position) = self.position
 		self.position = [ (y_position - 1) * 40 + 10,
 		 (x_position - 1) * 40 + 10]
