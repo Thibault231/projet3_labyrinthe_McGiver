@@ -14,15 +14,15 @@ class Element:
 			"""  Initiate common element's attributs """
 			self.name = name
 			self.picture_path = picture_path 
-			self.position = (x_position, y_position)
+			self.position = [x_position, y_position]
 
 
 	def element_sizing_position(self):
 		""" Resize matrix set of coordonates in surface set of 
 		coordonates for the Pygame window """
 		(x_position, y_position) = self.position
-		self.position = ( (y_position - 1) * 40 + 10,
-		 (x_position - 1) * 40 + 10)
+		self.position = [ (y_position - 1) * 40 + 10,
+		 (x_position - 1) * 40 + 10]
 
 	def show_element(self, window_surface):
 		""" Display elements randomly in the labyrinth on Pygame window."""

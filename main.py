@@ -1,6 +1,8 @@
 #coding: utf-8
 import numpy as np 
+import time
 import pygame
+from pygame.locals import *
 
 from class_map import *
 from class_item import *
@@ -13,7 +15,7 @@ def main():
 	map_game = Map(15, 15)
 	list_items = items_settlement()
 	MacGuffin =list_items.pop()
-	mac_giver, guardian = characters_settlement(MacGuffin)
+	mac_gyver, guardian = characters_settlement(MacGuffin)
 	# create and display the pygame main window surface	
 	pygame.init()
 	window_resolution = (600, 600)
@@ -30,43 +32,37 @@ def main():
 	map_game.show_labyrinth(window_surface)
 	for item in list_items:
 		item.show_element(window_surface)
-	mac_giver.show_element(window_surface)
+	mac_gyver.show_element(window_surface)
 	guardian.show_element(window_surface)
 
 	# execute the game script for events
 	launched = True
 	
 	while launched:
-	    
-	    for event in pygame.event.get():
-	        
-	        if event.type == pygame.QUIT:
-	            launched = False
-	        if event.type == KEYDOWN:
-				if event.key == K_DOWN:
-					#Colisions cheking
-					#MacGyver movement
-					#running interractions with items and guardian
-					pass
-				elif event.key == K_UP:
-					#Colisions cheking
-					#MacGyver movement
-					#running interractions with items and guardian
-					pass
-				elif event.key == K_RIGHT:
-					#Colisions cheking
-					#MacGyver movement
-					#running interractions with items and guardian
-					pass
-				elif event.key == K_UP:
-					#Colisions cheking
-					#MacGyver movement
-					#running interractions with items and guardian
-					pass
-				else:
-					pass
-		
-		pygame.display.flip()
+
+		for event in pygame.event.get():
+
+			if event.type == pygame.QUIT:
+				launched = False
+
+			elif event.type == KEYDOWN and event.key == K_DOWN:
+				mac_gyver.character_movment("down", window_surface,
+				 mac_gyver.position[0],  mac_gyver.position[1] )
+			elif event.type == KEYDOWN and event.key == K_UP:
+				mac_gyver.character_movment("up", window_surface,
+				 mac_gyver.position[0],  mac_gyver.position[1] )
+
+			elif event.type == KEYDOWN and event.key == K_RIGHT:
+				mac_gyver.character_movment("right", window_surface,
+				 mac_gyver.position[0],  mac_gyver.position[1] )
+
+			elif event.type == KEYDOWN and event.key == K_LEFT:
+				mac_gyver.character_movment("left", window_surface,
+				 mac_gyver.position[0],  mac_gyver.position[1] )
+			else:
+				pass
+
+	pygame.display.flip()
 	
 	pygame.mixer.music.stop()
 	pygame.quit()

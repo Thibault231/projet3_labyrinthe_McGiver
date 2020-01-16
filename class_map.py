@@ -49,3 +49,8 @@ class Map:
 			window_surface.blit(labyrinth_path, [y_position,x_position])
 		
 		pygame.display.flip()
+
+def repare_labyrinth(window_surface, x_position, y_position):
+	labyrinth_path = pygame.image.load("pictures/labyrinth_path.jpg") #  
+	labyrinth_path.convert_alpha()
+	window_surface.blit(labyrinth_path, [y_position,x_position])
