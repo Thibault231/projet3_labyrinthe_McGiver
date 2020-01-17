@@ -8,6 +8,11 @@ from class_map import *
 from class_element import *
 from module_events import *
 
+""" 
+This module rule the start positions of characters and
+items on the map.
+"""
+
 
 
 def characters_settlement(MacGuffin):

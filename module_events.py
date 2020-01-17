@@ -5,6 +5,11 @@ from pygame.locals import *
 from class_map import *
 from class_element import *
 
+""" 
+This module rule the movement and interactions events
+during the game.
+"""
+
 def items_control(mac_gyver, list_items):
 	""" Check that mac_gyver is or not on an item's cell.
 	Implements the item's counter. """

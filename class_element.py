@@ -7,6 +7,11 @@ import time
 from class_map import *
 from module_events import *
 
+""" 
+This module rule items and characters classes as heritated
+from the parent class: Element.
+"""
+
 class Element:
 	""" 
 	Define the parent class for characters and items
@@ -71,5 +76,5 @@ class Character(Element):
 class Item(Element):
 	"""
 	Define a children class for all items which should 
-	be collected by Mac Giver
+	be collected by Mac Giver.
 	"""

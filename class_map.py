@@ -2,6 +2,10 @@
 import numpy as np 
 import pygame
 
+""" 
+This module rule the map of the game.
+"""
+
 class Map:
 	""" 
 	Create the class Map for mapping the game as a matrix.

@@ -6,34 +6,19 @@ from class_map import *
 from class_element import *
 from module_settlements import *
 from module_events import *
+from module_windows import *
+
+""" 
+Starting module executing the game program.
+"""
 
 def main():
-	# run the end-window at the end of the game
+	""" Run the main program"""
+
 	pygame.init()
-	window_resolution = (600, 600)
-	pygame.display.set_caption("Labyrinthe Mac Giver")
-	window_surface = pygame.display.set_mode(window_resolution, \
-	pygame.RESIZABLE)
-	pygame.display.flip()
-
-	pygame.mixer.music.load("songs/Savfk_TheImpossible.mp3") 
-	pygame.mixer.music.play()	
-
-	labyrinth_font = pygame.image.load("pictures/your_mission.jpg")
-	labyrinth_font.convert_alpha()
-	window_surface.blit(labyrinth_font, [0, 0])
-	pygame.display.flip()
-
-	launched = True
-	while launched:
-		for event in pygame.event.get():
-			# Quit the loop if player close the window
-			if event.type == pygame.QUIT:
-				launched = False
-			elif event.type == KEYDOWN and event.key == K_RETURN:
-				launched = False
-
 	
+	# display the start window explaining the game
+	start_window()	
 
 	# create map, items and characters with their positions
 	map_game = Map(15, 15)
@@ -94,35 +79,8 @@ def main():
 	pygame.mixer.music.stop()
 	
 
-	# run the end-window at the end of the game
-	window_resolution = (600, 600)
-	pygame.display.set_caption("Labyrinthe Mac Giver")
-	window_surface = pygame.display.set_mode(window_resolution, \
-	pygame.RESIZABLE)
-	pygame.display.flip()
-
-		# select the end picture to display
-	if end_game:
-		labyrinth_font = pygame.image.load("pictures/you_die.jpg")
-		pygame.mixer.music.load("songs/Savfk_TheImpossible.mp3") 
-	elif not end_game:
-		labyrinth_font = pygame.image.load("pictures/you_win.jpg") 
-		pygame.mixer.music.load("songs/KSoviet04Final.mp3")
-	
-	pygame.mixer.music.play()
-	labyrinth_font.convert_alpha()
-	window_surface.blit(labyrinth_font, [0, 0])
-	pygame.display.flip()
-
-	launched = True
-	while launched:
-		for event in pygame.event.get():
-			# Quit the loop if player close the window
-			if event.type == pygame.QUIT:
-				launched = False
-			elif event.type == KEYDOWN and event.key == K_RETURN:
-				launched = False
-
+	# display and happy or unhappy ending window.
+	end_window(end_game)
 pygame.quit()
 		
 main()
