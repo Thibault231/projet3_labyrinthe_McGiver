@@ -1,13 +1,11 @@
 #coding: utf-8
-import numpy as np 
-import time
 import pygame
 from pygame.locals import *
 
 from class_map import *
-from class_item import *
-from class_character import *
-from class_element import *
+from settlements import *
+from classes import *
+from fonction_deplacement import*
 
 def main():
 	
@@ -41,32 +39,34 @@ def main():
 	while launched:
 
 		for event in pygame.event.get():
-
+			# Quit the loop if player close the window
 			if event.type == pygame.QUIT:
 				launched = False
-
+			# Events for directional keys
 			elif event.type == KEYDOWN and event.key == K_DOWN:
-				#movment control
-				mac_gyver.character_movment("down", window_surface,
-				 mac_gyver.position[0],  mac_gyver.position[1] )
-				#Colapse control
-				#Item control
+				# Make mac_gyver move
+				movement(mac_gyver, window_surface, 0, 1)
+				# Control interraction with items
+				list_items = items_control(mac_gyver, list_items)
+				# Control interaction with the guardian
+				launched = guardian_checking(launched, mac_gyver)
+
 			elif event.type == KEYDOWN and event.key == K_UP:
-				mac_gyver.character_movment("up", window_surface,
-				 mac_gyver.position[0],  mac_gyver.position[1] )
+				movement(mac_gyver, window_surface, 0, -1)
+				list_items = items_control(mac_gyver, list_items)
+				launched = guardian_checking(launched, mac_gyver)
 
 			elif event.type == KEYDOWN and event.key == K_RIGHT:
-				mac_gyver.character_movment("right", window_surface,
-				 mac_gyver.position[0],  mac_gyver.position[1] )
+				movement(mac_gyver, window_surface, 1, 0)
+				list_items = items_control(mac_gyver, list_items)
+				launched = guardian_checking(launched, mac_gyver)
 
 			elif event.type == KEYDOWN and event.key == K_LEFT:
-				mac_gyver.character_movment("left", window_surface,
-				 mac_gyver.position[0],  mac_gyver.position[1] )
-			else:
-				pass
-
+				movement(mac_gyver, window_surface, -1, 0)
+				list_items = items_control(mac_gyver, list_items)
+				launched = guardian_checking(launched, mac_gyver)
+			
 	pygame.display.flip()
-	
 	pygame.mixer.music.stop()
 	pygame.quit()
 
