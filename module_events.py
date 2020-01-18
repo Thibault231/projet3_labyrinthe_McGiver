@@ -4,21 +4,21 @@ from pygame.locals import *
 
 from class_map import *
 from class_element import *
+from module_dialogs import *
 
 """ 
 This module rule the movement and interactions events
 during the game.
 """
 
-def items_control(mac_gyver, list_items):
+def items_control(mac_gyver, list_items, window_surface ):
 	""" Check that mac_gyver is or not on an item's cell.
 	Implements the item's counter. """
 	for item in list_items:
 
 		if mac_gyver.position == item.position:
 			mac_gyver.counter += 1
-			print("i get my ",mac_gyver.counter,
-			 "/5 item.\n I'll get out from this hell.")
+			display_speech(1, window_surface, mac_gyver.counter)
 			list_items.remove(item)
 	return list_items
 
@@ -39,7 +39,7 @@ def guardian_checking(launched, mac_gyver, end_game=True):
 			end_game = False
 	return launched, end_game
 
-def walls_control(mac_gyver, x_var, y_var):
+def walls_control(mac_gyver, x_var, y_var, window_surface):
 	""" Allowed or cancel mac_gyver's move depending
 	on his next coordonates related to the labyrinth's map."""
 
@@ -52,7 +52,7 @@ def walls_control(mac_gyver, x_var, y_var):
 		return x_var, y_var
 	# Cancel move otherwise
 	else:
-		print("I'm not a ghost! I can't cross the walls.")
+		display_speech(2, window_surface, mac_gyver.counter)
 		x_var = 0
 		y_var = 0
 		return x_var, y_var
@@ -63,7 +63,7 @@ def movement(self, window_surface, x_var, y_var):
 		directional key instructions translated by the key word 'direction' """
 
 		# forbides moves outside the labyrinth
-		x_var, y_var = walls_control(self, x_var, y_var)
+		x_var, y_var = walls_control(self, x_var, y_var, window_surface)
 		x_position, y_position = self.position[0], self.position[1]
 		#creates a fluent movment
 		i = 1

@@ -7,6 +7,7 @@ from class_element import *
 from module_settlements import *
 from module_events import *
 from module_windows import *
+from module_dialogs import *
 
 """ 
 Starting module executing the game program.
@@ -43,6 +44,7 @@ def main():
 		item.show_element(window_surface)
 	mac_gyver.show_element(window_surface)
 	guardian.show_element(window_surface)
+	display_speech(3, window_surface, mac_gyver.counter)
 
 	# execution of game's script for the events
 	launched = True
@@ -58,23 +60,23 @@ def main():
 				# Make mac_gyver move
 				movement(mac_gyver, window_surface, 0, 1)
 				# Control interraction with items
-				list_items = items_control(mac_gyver, list_items)
+				list_items = items_control(mac_gyver, list_items, window_surface)
 				# Control interaction with the guardian
 				launched, end_game = guardian_checking(launched, mac_gyver)
 
 			elif event.type == KEYDOWN and event.key == K_UP:
 				movement(mac_gyver, window_surface, 0, -1)
-				list_items = items_control(mac_gyver, list_items)
+				list_items = items_control(mac_gyver, list_items, window_surface)
 				launched, end_game = guardian_checking(launched, mac_gyver)
 
 			elif event.type == KEYDOWN and event.key == K_RIGHT:
 				movement(mac_gyver, window_surface, 1, 0)
-				list_items = items_control(mac_gyver, list_items)
+				list_items = items_control(mac_gyver, list_items, window_surface)
 				launched, end_game = guardian_checking(launched, mac_gyver)
 
 			elif event.type == KEYDOWN and event.key == K_LEFT:
 				movement(mac_gyver, window_surface, -1, 0)
-				list_items = items_control(mac_gyver, list_items)
+				list_items = items_control(mac_gyver, list_items, window_surface)
 				launched, end_game = guardian_checking(launched, mac_gyver)
 	pygame.mixer.music.stop()
 	
