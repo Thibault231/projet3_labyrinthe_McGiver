@@ -2,12 +2,12 @@
 import pygame
 from pygame.locals import *
 
-from class_map import *
-from class_element import *
-from module_settlements import *
-from module_events import *
-from module_windows import *
-from module_dialogs import *
+from class_map import Map
+from class_element import Element, Character, Item
+from settlements import characters_settlement, items_settlement
+from events import items_control, guardian_checking, movement
+from windows import start_window, end_window
+from dialogs import display_speech
 
 """ 
 Starting module executing the game program.

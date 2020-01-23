@@ -19,7 +19,7 @@ def picking_speech(speech_index, mac_gyver_counter):
 		text_line2 = ""
 	# speech for finding items
 	elif speech_index == 1:
-		text_line1 = "I get my {}/5 item.".format(mac_gyver_counter)
+		text_line1 = "I get my {}/3 item.".format(mac_gyver_counter)
 		text_line2 = "I'll get out from this hell!"
 	# speech for colision with walls
 	elif speech_index == 2:

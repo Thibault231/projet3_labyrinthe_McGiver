@@ -1,10 +1,11 @@
 #coding: utf-8
 import pygame
+import time
 from pygame.locals import *
 
-from class_map import *
-from class_element import *
-from module_dialogs import *
+from class_map import Map, repare_labyrinth
+from class_element import Element, Character, Item
+from dialogs import display_speech
 
 """ 
 This module rule the movement and interactions events
@@ -31,10 +32,10 @@ def guardian_checking(launched, mac_gyver, end_game=True):
 	x_position, y_position = mac_gyver.revsizing_position()
 	# Define the end according to the amont of collected items
 	if (y_position, x_position) == Map.MAP_LABYRINTH[-1]:
-		if mac_gyver.counter != 5:
+		if mac_gyver.counter != 3:
 			launched = False
 			end_game = True
-		elif mac_gyver.counter == 5:
+		elif mac_gyver.counter == 3:
 			launched = False
 			end_game = False
 	return launched, end_game

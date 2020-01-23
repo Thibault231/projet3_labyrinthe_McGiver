@@ -4,9 +4,8 @@ import time
 import numpy as np 
 import pygame
 
-from class_map import *
-from class_element import *
-from module_events import *
+from class_map import Map, repare_labyrinth
+from class_element import Element, Character, Item
 
 """ 
 This module rule the start positions of characters and
@@ -20,7 +19,8 @@ def characters_settlement(MacGuffin):
 	
 	# Characters creations
 	mac_giver = Character("Mac","pictures/MacGyver.png")
-	mac_giver.position = MacGuffin.position
+	mac_giver.position = Map.MAP_LABYRINTH[0]
+	mac_giver.element_sizing_position()
 	guardian = Character("Guardian","pictures/Gardien.png")
 	guardian.position = Map.MAP_LABYRINTH[-1]
 	guardian.element_sizing_position()
@@ -32,18 +32,17 @@ def items_settlement():
 	""" Define items and there position on the labyrinth map"""
 	
 	# items creations
-	burger = Item ("burger","pictures/burger.png")
-	hammer = Item ("hammer","pictures/hammer.png")
-	knife = Item ("knife","pictures/knife.png")
-	nail = Item ("nail","pictures/nail.png")
-	saw = Item ("saw","pictures/saw.png")
+	needle = Item ("needle","pictures/needle.png")
+	seringe = Item ("seringe","pictures/seringe.png")
+	ether = Item ("ether","pictures/ether.png")
 	MacGuffin = Item ("MacGuffin","pictures/MacGyver.png")
 	
 	#lists of items and random positions creation 
 	#(exept the guardian's position)
-	list_items = [burger, hammer, knife, saw, nail, MacGuffin ]
+	list_items = [needle, seringe, ether, MacGuffin ]
 	list_random_position = list(Map.MAP_LABYRINTH)
 	list_random_position.remove(Map.MAP_LABYRINTH[-1])
+	list_random_position.remove(Map.MAP_LABYRINTH[1])
 	random.shuffle(list_random_position)
 	
 	# random positions attribution

@@ -4,8 +4,7 @@ import numpy as np
 import pygame
 import time
 
-from class_map import *
-from module_events import *
+from class_map import Map
 
 """ 
 This module rule items and characters classes as heritated
