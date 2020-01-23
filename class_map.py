@@ -13,7 +13,7 @@ def repare_labyrinth(window_surface, x_position, y_position):
 
 def map_as_list():
 	""" Extracte coordonates of labyrinth's path and set them in a list of tupples"""
-	with open("laby.txt", "r") as f :
+	with open("labyrinthe.txt", "r") as f :
 		fichier_entier = f.read()
 		files = fichier_entier.split("\n")
 
@@ -51,7 +51,7 @@ class Map:
 		labyrinth_path.convert_alpha()
 
 		# create liste of 15 rows from plan on laby.txt.
-		with open("laby.txt", "r") as f:
+		with open("labyrinthe.txt", "r") as f:
 			fichier_entier = f.read()
 			files = fichier_entier.split("\n")
 		# create list of 15*15 cells
@@ -73,7 +73,7 @@ class Map:
 
 
 if __name__=="__main__":
-	with open("laby.txt", "r") as f :
+	with open("labyrinthe.txt", "r") as f :
 	    fichier_entier = f.read()
 	    files = fichier_entier.split("\n")
 
