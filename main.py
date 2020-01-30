@@ -23,9 +23,8 @@ def main():
 
 	# create map, items and characters with their positions
 	map_game = Map(15, 15)
-	list_items = items_settlement()
-	MacGuffin =list_items.pop()
-	mac_gyver, guardian = characters_settlement(MacGuffin)
+	list_items = items_settlement(map_game)
+	mac_gyver, guardian = characters_settlement(map_game)
 	
 	# creates and displays the pygame main window surface	
 	window_resolution = (600, 600)
@@ -58,26 +57,26 @@ def main():
 			# Events for directional keys
 			elif event.type == KEYDOWN and event.key == K_DOWN:
 				# Make mac_gyver move
-				movement(mac_gyver, window_surface, 0, 1)
+				movement(mac_gyver, window_surface, 0, 1, map_game)
 				# Control interraction with items
 				list_items = items_control(mac_gyver, list_items, window_surface)
 				# Control interaction with the guardian
-				launched, end_game = guardian_checking(launched, mac_gyver)
+				launched, end_game = guardian_checking(launched, mac_gyver, map_game)
 
 			elif event.type == KEYDOWN and event.key == K_UP:
-				movement(mac_gyver, window_surface, 0, -1)
+				movement(mac_gyver, window_surface, 0, -1, map_game)
 				list_items = items_control(mac_gyver, list_items, window_surface)
-				launched, end_game = guardian_checking(launched, mac_gyver)
+				launched, end_game = guardian_checking(launched, mac_gyver, map_game)
 
 			elif event.type == KEYDOWN and event.key == K_RIGHT:
-				movement(mac_gyver, window_surface, 1, 0)
+				movement(mac_gyver, window_surface, 1, 0, map_game)
 				list_items = items_control(mac_gyver, list_items, window_surface)
-				launched, end_game = guardian_checking(launched, mac_gyver)
+				launched, end_game = guardian_checking(launched, mac_gyver, map_game)
 
 			elif event.type == KEYDOWN and event.key == K_LEFT:
-				movement(mac_gyver, window_surface, -1, 0)
+				movement(mac_gyver, window_surface, -1, 0, map_game)
 				list_items = items_control(mac_gyver, list_items, window_surface)
-				launched, end_game = guardian_checking(launched, mac_gyver)
+				launched, end_game = guardian_checking(launched, mac_gyver, map_game)
 	pygame.mixer.music.stop()
 	
 

@@ -12,37 +12,30 @@ This module rule the start positions of characters and
 items on the map.
 """
 
-
-
-def characters_settlement(MacGuffin):
+def characters_settlement(map_game):
 	""" Define Characters and there positions on the labyrinth map"""
 	
 	# Characters creations
 	mac_giver = Character("Mac","pictures/MacGyver.png")
-	mac_giver.position = Map.MAP_LABYRINTH[0]
+	mac_giver.position = map_game.pos_start[0]
 	mac_giver.element_sizing_position()
 	guardian = Character("Guardian","pictures/Gardien.png")
-	guardian.position = Map.MAP_LABYRINTH[-1]
+	guardian.position = map_game.pos_GD[0]
 	guardian.element_sizing_position()
-
 	return mac_giver, guardian
 
-
-def items_settlement():
+def items_settlement(map_game):
 	""" Define items and there position on the labyrinth map"""
 	
 	# items creations
 	needle = Item ("needle","pictures/needle.png")
 	seringe = Item ("seringe","pictures/seringe.png")
 	ether = Item ("ether","pictures/ether.png")
-	MacGuffin = Item ("MacGuffin","pictures/MacGyver.png")
 	
-	#lists of items and random positions creation 
-	#(exept the guardian's position)
-	list_items = [needle, seringe, ether, MacGuffin ]
-	list_random_position = list(Map.MAP_LABYRINTH)
-	list_random_position.remove(Map.MAP_LABYRINTH[-1])
-	list_random_position.remove(Map.MAP_LABYRINTH[1])
+	#creation of items list and their  random positions 
+	#(exept the guardian and Mac Gyver's positions)
+	list_items = [needle, seringe, ether]
+	list_random_position = list(map_game.lab_path)
 	random.shuffle(list_random_position)
 	
 	# random positions attribution
@@ -50,6 +43,5 @@ def items_settlement():
 		item = list_items[i]
 		item.position = list_random_position[i]
 		item.element_sizing_position()
-		print(item.name, "posséde la position  ", item.position)
-
+		#print(item.name, "posséde la position  ", item.position)
 	return list_items

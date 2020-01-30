@@ -11,35 +11,36 @@ def repare_labyrinth(window_surface, x_position, y_position):
 	labyrinth_path.convert_alpha()
 	window_surface.blit(labyrinth_path, [x_position,y_position])
 
-def map_as_list():
-	""" Extracte coordonates of labyrinth's path and set them in a list of tupples"""
-	with open("labyrinthe.txt", "r") as f :
-		fichier_entier = f.read()
-		files = fichier_entier.split("\n")
+def map_coord_set(mark):
+			""" Extracte coordonates of labyrinth's element and set them in a list of tupples"""
+			with open("labyrinthe.txt", "r") as f :
+				fichier_entier = f.read()
+				files = fichier_entier.split("\n")
 
-	map_lab=[]
-	for row in files:
-		row_cells = [cell for cell in row]
-		map_lab.append(row_cells)
-	MAPPY=[]
-	for row in range (0,len(map_lab)):
-		for column in range(0, len(map_lab)):
-			if map_lab[row][column] in ["o","h","g"]:
-				MAPPY.append((row+1,column+1))
-	return MAPPY
-
+			map_lab=[]
+			for row in files:
+				row_cells = [cell for cell in row]
+				map_lab.append(row_cells)
+			coord_on_map=[]
+			for row in range (0,len(map_lab)):
+				for column in range(0, len(map_lab)):
+					if map_lab[row][column] == mark:
+						coord_on_map.append((row+1,column+1))
+			return coord_on_map
 
 class Map:
 	""" 
 	Create the class Map for mapping the game as a matrix.
 	Map's creating objects need two arguments.
 	"""
-	# Last tuple is the exit position, First is Mac position
-	MAP_LABYRINTH = map_as_list()
-
+	
 	def __init__(self, width, heigth):
 		"""  Initiate the map attribute according to two size variables. """
 		self.map = np.zeros((width, heigth))
+		self.pos_start = map_coord_set("h")
+		self.pos_GD = map_coord_set("g")
+		self.lab_path = map_coord_set("o")
+		self.full_lab = self.pos_start + self.pos_GD + self.lab_path
 
 	def show_labyrinth(self, window_surface):
 		""" Display the labyrinth on Pygame window."""
@@ -63,28 +64,11 @@ class Map:
 		for row in range (0,len(map_lab)):
 			for column in range(0, len(map_lab)):
 				# define texture square of 40*40 pixels
-				x_position = ((row) * 40) +10  
-				y_position = ((column) * 40) + 10
+				x_position = ((row) * 40) 
+				y_position = ((column) * 40)
 				if map_lab[row][column] == "m":
 					window_surface.blit(labyrinth_wall, [y_position,x_position])
 				else:
 					window_surface.blit(labyrinth_path, [y_position,x_position])
 		pygame.display.flip()
-
-
-if __name__=="__main__":
-	with open("labyrinthe.txt", "r") as f :
-	    fichier_entier = f.read()
-	    files = fichier_entier.split("\n")
-
-	map_lab=[]
-	for row in files:
-		row_cells = [cell for cell in row]
-		map_lab.append(row_cells)
-	MAPPY=[]
-	for row in range (0,len(map_lab)):
-		for column in range(0, len(map_lab)):
-			if map_lab[row][column] in ["o","h","g"]:
-				MAPPY.append((row,column))
-	print (MAPPY)
 
