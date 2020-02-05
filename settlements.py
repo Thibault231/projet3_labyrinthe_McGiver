@@ -4,8 +4,10 @@ import time
 import numpy as np 
 import pygame
 
-from class_map import Map, repare_labyrinth
-from class_element import Element, Character, Item
+from map import Map, repare_labyrinth
+from element import Element
+from character import Character
+from item import Item
 
 """ 
 This module rule the start positions of characters and

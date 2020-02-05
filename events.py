@@ -3,8 +3,10 @@ import pygame
 import time
 from pygame.locals import *
 
-from class_map import Map, repare_labyrinth
-from class_element import Element, Character, Item
+from map import Map, repare_labyrinth
+from element import Element
+from character import Character
+from item import Item
 from dialogs import display_speech
 
 """ 

@@ -2,8 +2,10 @@
 import pygame
 from pygame.locals import *
 
-from class_map import Map
-from class_element import Element, Character, Item
+from map import Map
+from element import Element
+from character import Character
+from item import Item
 from settlements import characters_settlement, items_settlement
 from events import items_control, guardian_checking, movement
 from windows import start_window, end_window
